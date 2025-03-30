@@ -160,23 +160,33 @@
             background-color: #614c3a;
         }
         /* Transición suave al filtrar */
-.rutina-card {
-    transition: all 0.3s ease;
-}
+        .rutina-card {
+            transition: all 0.3s ease;
+        }
 
-/* Efecto para tarjetas ocultas */
-.rutina-card[style*="display: none"] {
-    transform: scale(0);
-    opacity: 0;
-}
+        /* Efecto para tarjetas ocultas */
+        .rutina-card[style*="display: none"] {
+            transform: scale(0);
+            opacity: 0;
+        }
+        .logo-container img {
+            height: 100%;
+            object-fit: contain; /* Ajusta la imagen al contenedor */
+            border-radius: 50%; /* Mantiene la forma circular */
+        }
+
+        /* Elimina el fondo gris del contenedor si quieres */
+        .logo-container {
+            background-color: transparent; /* Quitar el fondo gris */
+            padding: 5px; /* Espacio opcional */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="logo-container">
-                <span>GalleTonas</span>
-                <!-- Aquí iría el logo de GalleTonas -->
+                <img src="png/LogoGalleta.png" alt="Logo GalleTonas">
             </div>
             <h1>Rutinas de Entrenamiento</h1>
             <p>Selecciona tu rutina ideal y comienza a entrenar ahora mismo</p>
