@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Camisetas - Textiles Digitales</title>
+    <style>
+        /* Reset y configuración base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colores principales - accesibles y modernos */
+            --primary-green: #2E8B57;
+            --light-green: #90EE90;
+            --accent-green: #20B2AA;
+            --mint-green: #98FB98;
+            --pure-white: #FFFFFF;
+            --soft-white: #F8F8FF;
+            --ghost-white: #F5F5F5;
+            
+            /* Colores de texto accesibles */
+            --text-dark: #2C3E50;
+            --text-medium: #4A5568;
+            --text-light: #718096;
+            
+            /* Sombras y efectos */
+            --glow-green: 0 0 20px rgba(46, 139, 87, 0.3);
+            --glow-light: 0 0 15px rgba(144, 238, 144, 0.4);
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.15);
+            
+            /* Tipografía */
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-size-base: 16px;
+            --font-size-large: 1.25rem;
+            --font-size-xl: 2rem;
+            --font-size-xxl: 2.5rem;
+            
+            /* Espaciado */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Bordes y radios */
+            --border-radius: 12px;
+            --border-radius-large: 20px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--soft-white) 0%, var(--ghost-white) 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--soft-white) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+            border-bottom: 1px solid rgba(46, 139, 87, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: var(--spacing-md) 0;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-container {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-container:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-icon {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            transition: color 0.3s ease;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #ff4757, #ff3742);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .cart-count.show {
+            transform: scale(1);
+        }
+
+        .header-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: var(--glow-green);
+        }
+
+        .home-button {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            color: white;
+            text-decoration: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-green);
+        }
+
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium), var(--glow-green);
+        }
+
+        .home-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--mint-green) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(46, 139, 87, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        .hero-title {
+            font-size: var(--font-size-xxl);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-md);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-description {
+            font-size: var(--font-size-large);
+            color: var(--text-medium);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Carousel Container */
+        .catalog-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-large);
+            background: var(--pure-white);
+            box-shadow: var(--shadow-medium);
+            padding: var(--spacing-lg);
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--pure-white);
+            border-radius: var(--border-radius-large);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-medium);
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            max-width: 500px;
+            min-height: 700px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green), var(--light-green));
+            border-radius: var(--border-radius-large);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium), var(--glow-green);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-title {
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .card-category {
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            color: var(--pure-white);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            box-shadow: var(--glow-green);
+        }
+
+        .model-container {
+            margin: var(--spacing-md) 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid rgba(46, 139, 87, 0.2);
+            transition: all 0.3s ease;
+            height: 450px;
+        }
+
+        .model-container:hover {
+            box-shadow: var(--shadow-medium), var(--glow-light);
+            transform: scale(1.02);
+        }
+
+        .sketchfab-embed-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sketchfab-embed-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+
+        .card-info {
+            margin-top: var(--spacing-md);
+        }
+
+        .card-description {
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .card-details {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-xs);
+            font-size: 0.9rem;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .detail-value {
+            color: var(--text-medium);
+        }
+
+        .card-tags {
+            display: flex;
+            gap: var(--spacing-xs);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tag {
+            background: linear-gradient(135deg, rgba(46, 139, 87, 0.1), rgba(144, 238, 144, 0.2));
+            color: var(--primary-green);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid rgba(46, 139, 87, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary-green);
+            color: var(--pure-white);
+            box-shadow: var(--glow-green);
+            transform: scale(1.05);
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-green);
+            margin-top: auto;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium), var(--glow-green);
+            background: linear-gradient(135deg, var(--accent-green), var(--primary-green));
+        }
+
+        .add-to-cart-btn:active {
+            transform: translateY(0);
+            box-shadow: var(--glow-green);
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-green);
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: var(--shadow-medium), var(--glow-green);
+        }
+
+        .carousel-nav.prev {
+            left: -25px;
+        }
+
+        .carousel-nav.next {
+            right: -25px;
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(46, 139, 87, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--primary-green);
+            transform: scale(1.2);
+            box-shadow: var(--glow-green);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            color: white;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium), var(--glow-green);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            z-index: 2000;
+            font-weight: 500;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE DESIGN MEJORADO */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .carousel-container {
+                padding: var(--spacing-md);
+            }
+            
+            .card {
+                min-height: 600px;
+            }
+            
+            .model-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Header responsive */
+            .header-container {
+                flex-direction: row;
+                gap: var(--spacing-sm);
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .header-title {
+                font-size: 1.5rem;
+            }
+            
+            .home-button {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.9rem;
+            }
+            
+            .cart-icon {
+                font-size: 1.5rem;
+            }
+            
+            /* Hero responsive */
+            .hero {
+                padding: var(--spacing-lg) 0;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+                padding: 0 var(--spacing-sm);
+            }
+            
+            /* Carousel responsive */
+            .catalog-section {
+                padding: var(--spacing-lg) 0;
+            }
+            
+            .carousel-container {
+                padding: var(--spacing-sm);
+                margin: 0 var(--spacing-sm);
+            }
+            
+            .carousel-slide {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-md);
+            }
+            
+            .card {
+                max-width: 100%;
+                min-height: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-xs);
+            }
+            
+            .card-title {
+                font-size: 1.1rem;
+            }
+            
+            .model-container {
+                height: 300px;
+            }
+            
+            /* Navegación en tablet - más pequeña pero visible */
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .carousel-nav.prev {
+                left: -20px;
+            }
+            
+            .carousel-nav.next {
+                right: -20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Header móvil muy pequeño */
+            .header-container {
+                flex-direction: column;
+                gap: var(--spacing-xs);
+                padding: var(--spacing-xs);
+            }
+            
+            .header-title {
+                font-size: 1.3rem;
+                text-align: center;
+            }
+            
+            .home-button {
+                padding: var(--spacing-xs);
+                font-size: 0.85rem;
+            }
+            
+            /* Hero móvil */
+            .hero {
+                padding: var(--spacing-md) 0;
+            }
+            
+            .hero-title {
+                font-size: 1.5rem;
+                margin-bottom: var(--spacing-sm);
+            }
+            
+            .hero-description {
+                font-size: 0.9rem;
+                padding: 0 var(--spacing-sm);
+            }
+            
+            /* Container móvil */
+            .container {
+                padding: 0 var(--spacing-xs);
+            }
+            
+            .carousel-container {
+                padding: var(--spacing-xs);
+                margin: 0;
+                border-radius: var(--border-radius);
+            }
+            
+            .card {
+                padding: var(--spacing-sm);
+                min-height: 450px;
+            }
+            
+            .card-title {
+                font-size: 1rem;
+            }
+            
+            .card-category {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+            }
+            
+            .model-container {
+                height: 250px;
+                margin: var(--spacing-sm) 0;
+            }
+            
+            .card-description {
+                font-size: 0.85rem;
+                margin-bottom: var(--spacing-sm);
+            }
+            
+            .detail-item {
+                font-size: 0.8rem;
+            }
+            
+            .tag {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+            }
+            
+            .add-to-cart-btn {
+                font-size: 0.9rem;
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+            
+            /* Navegación móvil - posición interna para mejor accesibilidad */
+            .carousel-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+                background: rgba(46, 139, 87, 0.9);
+                backdrop-filter: blur(5px);
+            }
+            
+            .carousel-nav.prev {
+                left: 10px;
+            }
+            
+            .carousel-nav.next {
+                right: 10px;
+            }
+            
+            /* Indicadores más pequeños */
+            .indicator {
+                width: 8px;
+                height: 8px;
+            }
+            
+            /* Toast más pequeño */
+            .toast {
+                right: 10px;
+                bottom: 10px;
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            /* Para pantallas muy pequeñas */
+            .hero-title {
+                font-size: 1.3rem;
+            }
+            
+            .hero-description {
+                font-size: 0.8rem;
+            }
+            
+            .card {
+                min-height: 400px;
+            }
+            
+            .model-container {
+                height: 200px;
+            }
+            
+            .carousel-nav {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Mejoras de accesibilidad */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="cart-container" onclick="toggleCart()">
+                <div class="cart-icon">🛒</div>
+                <div class="cart-count" id="cart-count">0</div>
+            </div>
+            
+            <h1 class="header-title">Catálogo Textil</h1>
+            
+            <a href="index.html" class="home-button">
+                <span class="home-icon">🏠</span>
+                <span>Inicio</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 class="hero-title">Bienvenido al Catálogo de Camisetas</h2>
+            <p class="hero-description">
+                Descubre nuestra innovadora colección de camisetas digitales en 3D. 
+                Cada diseño refleja calidad, comodidad y estilo urbano contemporáneo.
+            </p>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="carousel-container">
+                <!-- Navigation Buttons -->
+                <button class="carousel-nav prev" onclick="previousSlide()">
+                    <span class="nav-icon">‹</span>
+                </button>
+                <button class="carousel-nav next" onclick="nextSlide()">
+                    <span class="nav-icon">›</span>
+                </button>
+
+                <!-- Carousel -->
+                <div class="carousel-wrapper" id="carousel-wrapper">
+                    
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Camiseta Urbana Básica</h3>
+                                <span class="card-category">Casual</span>
+                            </div>
+                            <div class="model-container">
+                                <div class="sketchfab-embed-wrapper">
+                                    <iframe title="CAMISETA BÁSICA" 
+                                            frameborder="0" 
+                                            allowfullscreen 
+                                            mozallowfullscreen="true" 
+                                            webkitallowfullscreen="true" 
+                                            allow="autoplay; fullscreen; xr-spatial-tracking" 
+                                            xr-spatial-tracking 
+                                            execution-while-out-of-viewport 
+                                            execution-while-not-rendered 
+                                            web-share 
+                                            width="100%" 
+                                            height="100%" 
+                                            src="https://sketchfab.com/models/43e18ff7b1f34453b5045bb7062c9904/embed">
+                                    </iframe>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <p class="card-description">Camiseta clásica de corte moderno, perfecta para el día a día. Confeccionada en algodón premium con acabados de calidad superior.</p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Talla:</span>
+                                        <span class="detail-value">S, M, L, XL</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Corte:</span>
+                                        <span class="detail-value">Regular Fit</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Material:</span>
+                                        <span class="detail-value">100% Algodón</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Uso:</span>
+                                        <span class="detail-value">Diario</span>
+                                    </div>
+                                </div>
+                                <div class="card-tags">
+                                    <span class="tag">Básica</span>
+                                    <span class="tag">Cómoda</span>
+                                    <span class="tag">Versátil</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="addToCart('Camiseta Urbana Básica', 'Casual')">
+                                    Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Camiseta Deportiva Pro</h3>
+                                <span class="card-category">Deportiva</span>
+                            </div>
+                            <div class="model-container">
+                                <div class="sketchfab-embed-wrapper">
+                                    <iframe title="Camiseta Deportiva" 
+                                            frameborder="0" 
+                                            allowfullscreen 
+                                            mozallowfullscreen="true" 
+                                            webkitallowfullscreen="true" 
+                                            allow="autoplay; fullscreen; xr-spatial-tracking" 
+                                            xr-spatial-tracking 
+                                            execution-while-out-of-viewport 
+                                            execution-while-not-rendered 
+                                            web-share 
+                                            width="100%" 
+                                            height="100%" 
+                                            src="https://sketchfab.com/models/770bdf810dbc4296a68e33a14f18fe3e/embed">
+                                    </iframe>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <p class="card-description">Camiseta técnica diseñada para el rendimiento deportivo, con tecnología de absorción de humedad y ventilación estratégica.</p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Talla:</span>
+                                        <span class="detail-value">XS a XXL</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Corte:</span>
+                                        <span class="detail-value">Athletic Fit</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Material:</span>
+                                        <span class="detail-value">Poliéster Técnico</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Uso:</span>
+                                        <span class="detail-value">Deportivo</span>
+                                    </div>
+                                </div>
+                                <div class="card-tags">
+                                    <span class="tag">Técnica</span>
+                                    <span class="tag">Transpirable</span>
+                                    <span class="tag">Rendimiento</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="addToCart('Camiseta Deportiva Pro', 'Deportiva')">
+                                    Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Camiseta Polo Premium</h3>
+                                <span class="card-category">Elegante</span>
+                            </div>
+                            <div class="model-container">
+                                <div class="sketchfab-embed-wrapper">
+                                    <iframe title="Camiseta Polo Premium" 
+                                            frameborder="0" 
+                                            allowfullscreen 
+                                            mozallowfullscreen="true" 
+                                            webkitallowfullscreen="true" 
+                                            allow="autoplay; fullscreen; xr-spatial-tracking" 
+                                            xr-spatial-tracking 
+                                            execution-while-out-of-viewport 
+                                            execution-while-not-rendered 
+                                            web-share 
+                                            width="100%" 
+                                            height="100%" 
+                                            src="https://sketchfab.com/models/866df865f4cb417080da7e0368ad7e2e/embed">
+                                    </iframe>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <p class="card-description">Polo de alta calidad con diseño sofisticado, ideal para ocasiones semi-formales y eventos casuales elegantes.</p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Talla:</span>
+                                        <span class="detail-value">S, M, L, XL</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Corte:</span>
+                                        <span class="detail-value">Slim Fit</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Material:</span>
+                                        <span class="detail-value">Algodón Piqué</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Uso:</span>
+                                        <span class="detail-value">Semi-formal</span>
+                                    </div>
+                                </div>
+                                <div class="card-tags">
+                                    <span class="tag">Premium</span>
+                                    <span class="tag">Elegante</span>
+                                    <span class="tag">Clásico</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="addToCart('Camiseta Polo Premium', 'Elegante')">
+                                    Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Camiseta Gráfica Streetwear</h3>
+                                <span class="card-category">Urbana</span>
+                            </div>
+                            <div class="model-container">
+                                <div class="sketchfab-embed-wrapper">
+                                    <iframe title="Camiseta Gráfica Streetwear" 
+                                            frameborder="0" 
+                                            allowfullscreen 
+                                            mozallowfullscreen="true" 
+                                            webkitallowfullscreen="true" 
+                                            allow="autoplay; fullscreen; xr-spatial-tracking" 
+                                            xr-spatial-tracking 
+                                            execution-while-out-of-viewport 
+                                            execution-while-not-rendered 
+                                            web-share 
+                                            width="100%" 
+                                            height="100%" 
+                                            src="https://sketchfab.com/models/dad6d4812abb40e0b04d3613b093030c/embed">
+                                    </iframe>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <p class="card-description">Camiseta con diseño gráfico exclusivo, perfecta para expresar tu estilo urbano y personalidad única en la calle.</p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Talla:</span>
+                                        <span class="detail-value">XS a XL</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Corte:</span>
+                                        <span class="detail-value">Oversize</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Material:</span>
+                                        <span class="detail-value">Algodón Orgánico</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Uso:</span>
+                                        <span class="detail-value">Streetwear</span>
+                                    </div>
+                                </div>
+                                <div class="card-tags">
+                                    <span class="tag">Gráfica</span>
+                                    <span class="tag">Trendy</span>
+                                    <span class="tag">Urbana</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="addToCart('Camiseta Gráfica Streetwear', 'Urbana')">
+                                    Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators">
+                    <div class="indicator active" onclick="goToSlide(0)"></div>
+                    <div class="indicator" onclick="goToSlide(1)"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        let currentSlide = 0;
+        const totalSlides = 2;
+
+        // Cart functions
+        function addToCart(itemName, category) {
+            cart.push({ name: itemName, category: category });
+            updateCartCount();
+            showToast(`${itemName} añadido al carrito`);
+        }
+
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            cartCount.textContent = cart.length;
+            cartCount.classList.toggle('show', cart.length > 0);
+        }
+
+        function toggleCart() {
+            if (cart.length === 0) {
+                showToast('El carrito está vacío');
+                return;
+            }
+            
+            let cartItems = cart.map(item => `• ${item.name} (${item.category})`).join('\n');
+            alert(`Carrito de compras:\n\n${cartItems}\n\nTotal de artículos: ${cart.length}`);
+        }
+
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Carousel functions
+        function updateCarousel() {
+            const wrapper = document.getElementById('carousel-wrapper');
+            wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+
+        document.getElementById('carousel-wrapper').addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        document.getElementById('carousel-wrapper').addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const threshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    previousSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+            }
+        });
+
+        // Initialize cart count on page load
+        updateCartCount();
+    </script>
+</body>
+</html>
