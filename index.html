@@ -3,762 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GalleTonas - Rutinas de Entrenamiento</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #a18262;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-        }
-        
-        .logo-container {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        h1, h2, h3 {
-            text-align: center;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .rutinas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .rutina-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        
-        .rutina-card:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-        }
-        
-        .rutina-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 100;
-            overflow-y: auto;
-        }
-        
-        .modal-content {
-            background-color: #a18262;
-            width: 90%;
-            max-width: 800px;
-            margin: 50px auto;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            position: relative;
-            color: #fff;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 30px;
-            cursor: pointer;
-            color: #fff;
-        }
-        
-        .ejercicio {
-            background-color: rgba(255, 255, 255, 0.1);
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        
-        .btn {
-            background-color: #614c3a;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        
-        .btn:hover {
-            background-color: #7a6149;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Íconos simples con emojis */
-        .emoji-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        /* Tabs para filtrar rutinas */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .tab {
-            padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            cursor: pointer;
-        }
-        
-        .tab.active {
-            background-color: #614c3a;
-        }
-        /* Transición suave al filtrar */
-        .rutina-card {
-            transition: all 0.3s ease;
-        }
-
-        /* Efecto para tarjetas ocultas */
-        .rutina-card[style*="display: none"] {
-            transform: scale(0);
-            opacity: 0;
-        }
-        .logo-container img {
-            height: 100%;
-            object-fit: contain; /* Ajusta la imagen al contenedor */
-            border-radius: 50%; /* Mantiene la forma circular */
-        }
-
-        /* Elimina el fondo gris del contenedor si quieres */
-        .logo-container {
-            background-color: transparent; /* Quitar el fondo gris */
-            padding: 5px; /* Espacio opcional */
-        }
-    </style>
+    <title>Catálogo Textil</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <img src="png/LogoGalleta.png" alt="Logo GalleTonas">
-            </div>
-            <h1>Rutinas de Entrenamiento</h1>
-            <p>Selecciona tu rutina ideal y comienza a entrenar ahora mismo</p>
-        </header>
-        
-        <div class="tabs">
-            <div class="tab active" data-filter="all">Todas</div>
-            <div class="tab" data-filter="volumen">Volumen</div>
-            <div class="tab" data-filter="definicion">Definición</div>
-            <div class="tab" data-filter="fuerza">Fuerza</div>
-            <div class="tab" data-filter="principiantes">Principiantes</div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Catálogo Textil</h1>
+            <nav class="nav">
+                <a href="#ropa" class="nav-link">Ropa</a>
+                <a href="#modelos" class="nav-link">Modelos</a>
+            </nav>
         </div>
-        
-        <div class="rutinas-grid">
-            <!-- Rutina 1 -->
-            <div class="rutina-card" data-category="volumen" onclick="openModal('volumen-4dias')">
-                <div class="emoji-icon">💪</div>
-                <h3>Rutina de Volumen 4 días</h3>
-                <p>Entrenamiento básico y pesado para ganar masa muscular</p>
-            </div>
-            
-            <!-- Rutina 2 -->
-            <div class="rutina-card" data-category="definicion" onclick="openModal('definicion-5dias')">
-                <div class="emoji-icon">✂️</div>
-                <h3>Rutina de Definición</h3>
-                <p>Alta intensidad y menor descanso para quemar grasa</p>
-            </div>
-            
-            <!-- Rutina 3 -->
-            <div class="rutina-card" data-category="fuerza" onclick="openModal('fuerza-3dias')">
-                <div class="emoji-icon">🏋️</div>
-                <h3>Rutina de Fuerza</h3>
-                <p>Enfocada en aumentar tu capacidad de levantar peso</p>
-            </div>
-            
-            <!-- Rutina 4 -->
-            <div class="rutina-card" data-category="principiantes" onclick="openModal('principiantes')">
-                <div class="emoji-icon">🔰</div>
-                <h3>Rutina para Principiantes</h3>
-                <p>Ideal para quienes comienzan en el mundo del fitness</p>
-            </div>
-            
-            <!-- Rutina 5 -->
-            <div class="rutina-card" data-category="volumen" onclick="openModal('volumen-torso-pierna')">
-                <div class="emoji-icon">🦵</div>
-                <h3>Rutina Torso-Pierna</h3>
-                <p>Enfoque en desarrollar torso y piernas en días alternos</p>
-            </div>
-            
-            <!-- Rutina 6 -->
-            <div class="rutina-card" data-category="volumen" onclick="openModal('volumen-push-pull')">
-                <div class="emoji-icon">🔄</div>
-                <h3>Rutina Tirón-Empujón</h3>
-                <p>Divide tus entrenamientos en ejercicios de tirar y empujar</p>
-            </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 class="hero-title">Explora Nuestro Catálogo en 3D</h2>
+            <p class="hero-description">Descubre textiles innovadores con visualización interactiva</p>
         </div>
-        
-        <!-- Modales de cada rutina -->
-        <!-- Modal Rutina Volumen 4 días -->
-        <div id="volumen-4dias" class="modal">
-            <div class="modal-content">
-                <span class="close-button" onclick="closeModal('volumen-4dias')">&times;</span>
-                <h2>Rutina de Volumen - 4 días a la semana</h2>
+    </section>
+
+    <!-- Sección de Ropa -->
+    <section id="ropa" class="section">
+        <div class="container">
+            <h2 class="section-title">Colección de Ropa</h2>
+            <div class="grid">
                 
-                <h3>Día 1: Pecho y Bíceps</h3>
-                <div class="ejercicio">
-                    <h4>Press de banca plano</h4>
-                    <p>4 series x 8-12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Press inclinado con mancuernas</h4>
-                    <p>3 series x 10 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Aperturas en polea alta</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl con barra</h4>
-                    <p>3 series x 10-12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl con mancuernas alternado</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                
-                <h3>Día 2: Espalda y Tríceps</h3>
-                <div class="ejercicio">
-                    <h4>Dominadas o jalón al pecho</h4>
-                    <p>4 series x 8-12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Remo con barra</h4>
-                    <p>3 series x 10 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Remo con mancuerna</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Extensiones de tríceps en polea</h4>
-                    <p>3 series x 10-12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Press francés con barra EZ</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                
-                <h3>Día 3: Piernas</h3>
-                <div class="ejercicio">
-                    <h4>Sentadillas</h4>
-                    <p>4 series x 8-12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Prensa de piernas</h4>
-                    <p>3 series x 10 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Extensiones de cuádriceps</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl femoral</h4>
-                    <p>3 series x 10-12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones de pantorrilla</h4>
-                    <p>4 series x 15 repeticiones</p>
-                </div>
-                
-                <h3>Día 4: Hombros y Abdomen</h3>
-                <div class="ejercicio">
-                    <h4>Press militar</h4>
-                    <p>4 series x 8-12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones laterales</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones frontales</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones de piernas en banco plano</h4>
-                    <p>3 series x 20 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Crunch en polea</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                
-                <h3>Recomendaciones:</h3>
-                <ul>
-                    <li>Descansa entre 1 y 2 minutos entre series</li>
-                    <li>Entrena al fallo muscular en cada serie</li>
-                    <li>Realiza 20 minutos de cardio moderado 3 veces por semana</li>
-                    <li>Consume suficiente proteína (1.5-2g por kg de peso corporal)</li>
-                    <li>Mantén una buena hidratación</li>
-                </ul>
-                
-                <button class="btn" onclick="printRoutine('volumen-4dias')">Imprimir Rutina</button>
-            </div>
-        </div>
-        
-        <!-- Modal Rutina de Definición -->
-        <div id="definicion-5dias" class="modal">
-            <div class="modal-content">
-                <span class="close-button" onclick="closeModal('definicion-5dias')">&times;</span>
-                <h2>Rutina de Definición - 5 días a la semana</h2>
-                
-                <h3>Día 1: Pecho y Abdomen</h3>
-                <div class="ejercicio">
-                    <h4>Press de banca plano</h4>
-                    <p>4 series x 12-15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Press inclinado con mancuernas</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Aperturas en polea</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Flexiones hasta el fallo</h4>
-                    <p>3 series</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Crunch abdominal</h4>
-                    <p>4 series x 20 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Plancha</h4>
-                    <p>3 series x 45 segundos</p>
-                </div>
-                
-                <h3>Día 2: Espalda y Abdomen</h3>
-                <div class="ejercicio">
-                    <h4>Dominadas o jalón al pecho</h4>
-                    <p>4 series x 12-15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Remo con barra</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Pullover con mancuerna</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Hiperextensiones</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevación de piernas colgado</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Russian twist</h4>
-                    <p>3 series x 20 repeticiones (10 por lado)</p>
-                </div>
-                
-                <h3>Día 3: Piernas</h3>
-                <div class="ejercicio">
-                    <h4>Sentadillas</h4>
-                    <p>4 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Zancadas con mancuernas</h4>
-                    <p>3 series x 12 repeticiones por pierna</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Extensión de cuádriceps</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl femoral</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevación de pantorrilla de pie</h4>
-                    <p>4 series x 20 repeticiones</p>
-                </div>
-                
-                <h3>Día 4: Hombros y Tríceps</h3>
-                <div class="ejercicio">
-                    <h4>Press militar</h4>
-                    <p>4 series x 12-15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones laterales</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones posteriores</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Fondos en paralelas</h4>
-                    <p>3 series hasta el fallo</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Extensión de tríceps en polea</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                
-                <h3>Día 5: Bíceps, Antebrazos y Abdomen</h3>
-                <div class="ejercicio">
-                    <h4>Curl con barra</h4>
-                    <p>3 series x 12-15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl martillo</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl concentrado</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl de muñeca</h4>
-                    <p>3 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Circuito de abdominales (4 ejercicios)</h4>
-                    <p>3 series de 45 segundos por ejercicio</p>
-                </div>
-                
-                <h3>Recomendaciones:</h3>
-                <ul>
-                    <li>Descanso entre series: 45 segundos</li>
-                    <li>Cardio: 30 minutos después de cada entrenamiento</li>
-                    <li>Dieta con déficit calórico moderado (300-500 calorías)</li>
-                    <li>Mantén alta ingesta de proteínas (2g por kg de peso)</li>
-                    <li>Bebe al menos 3 litros de agua al día</li>
-                </ul>
-                
-                <button class="btn" onclick="printRoutine('definicion-5dias')">Imprimir Rutina</button>
-            </div>
-        </div>
-        
-        <!-- Modal Rutina de Fuerza -->
-        <div id="fuerza-3dias" class="modal">
-            <div class="modal-content">
-                <span class="close-button" onclick="closeModal('fuerza-3dias')">&times;</span>
-                <h2>Rutina de Fuerza - 3 días a la semana</h2>
-                
-                <h3>Día 1: Empujón (Pecho, Hombros, Tríceps)</h3>
-                <div class="ejercicio">
-                    <h4>Press de banca plano</h4>
-                    <p>5 series x 5 repeticiones (peso alto)</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Press militar</h4>
-                    <p>4 series x 6 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Press de banca inclinado</h4>
-                    <p>3 series x 8 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Fondos en paralelas</h4>
-                    <p>3 series x 8 repeticiones (añadir peso si es necesario)</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Extensiones de tríceps</h4>
-                    <p>3 series x 8 repeticiones</p>
-                </div>
-                
-                <h3>Día 2: Tirón (Espalda, Bíceps, Antebrazos)</h3>
-                <div class="ejercicio">
-                    <h4>Peso muerto</h4>
-                    <p>5 series x 5 repeticiones (peso alto)</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Dominadas</h4>
-                    <p>4 series x 6-8 repeticiones (añadir peso si es necesario)</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Remo con barra</h4>
-                    <p>3 series x 8 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl con barra</h4>
-                    <p>3 series x 8 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl de antebrazo</h4>
-                    <p>2 series x 10 repeticiones</p>
-                </div>
-                
-                <h3>Día 3: Piernas y Core</h3>
-                <div class="ejercicio">
-                    <h4>Sentadillas</h4>
-                    <p>5 series x 5 repeticiones (peso alto)</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Prensa de piernas</h4>
-                    <p>4 series x 6 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Peso muerto rumano</h4>
-                    <p>3 series x 8 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones de pantorrilla</h4>
-                    <p>3 series x 10 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Plancha</h4>
-                    <p>3 series x 60 segundos</p>
-                </div>
-                
-                <h3>Recomendaciones:</h3>
-                <ul>
-                    <li>Descanso entre series: 2-3 minutos para ejercicios principales</li>
-                    <li>Incrementa el peso cuando puedas completar todas las repeticiones</li>
-                    <li>Mantén siempre una técnica perfecta</li>
-                    <li>Descansa 1-2 días entre sesiones de entrenamiento</li>
-                    <li>Consume suficientes calorías (superávit moderado)</li>
-                    <li>Mínimo cardio (1-2 sesiones semanales de 20 minutos)</li>
-                </ul>
-                
-                <button class="btn" onclick="printRoutine('fuerza-3dias')">Imprimir Rutina</button>
-            </div>
-        </div>
-        
-        <!-- Modal Rutina para Principiantes -->
-        <div id="principiantes" class="modal">
-            <div class="modal-content">
-                <span class="close-button" onclick="closeModal('principiantes')">&times;</span>
-                <h2>Rutina para Principiantes - 3 días a la semana</h2>
-                
-                <h3>Día 1: Cuerpo Completo A</h3>
-                <div class="ejercicio">
-                    <h4>Sentadillas con peso corporal</h4>
-                    <p>3 series x 12-15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Flexiones de pecho (modificadas si es necesario)</h4>
-                    <p>3 series x 10-12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Remo con mancuerna a una mano</h4>
-                    <p>3 series x 12 repeticiones por brazo</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones laterales con mancuernas</h4>
-                    <p>2 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Curl de bíceps con mancuernas</h4>
-                    <p>2 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Plancha</h4>
-                    <p>2 series x 30 segundos</p>
-                </div>
-                
-                <h3>Día 2: Descanso activo o Cardio ligero</h3>
-                <div class="ejercicio">
-                    <h4>Caminata de 30-45 minutos o bicicleta</h4>
-                </div>
-                
-                <h3>Día 3: Cuerpo Completo B</h3>
-                <div class="ejercicio">
-                    <h4>Zancadas</h4>
-                    <p>3 series x 10 repeticiones por pierna</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Press de hombro con mancuernas</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Jalón en polea alta (o dominadas asistidas)</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Extensión de tríceps con mancuerna</h4>
-                    <p>2 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Elevaciones de talones</h4>
-                    <p>2 series x 15 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Abdominales</h4>
-                    <p>2 series x 15 repeticiones</p>
-                </div>
-                
-                <h3>Día 4: Descanso activo o Cardio ligero</h3>
-                <div class="ejercicio">
-                    <h4>Caminata de 30-45 minutos o bicicleta</h4>
-                </div>
-                
-                <h3>Día 5: Cuerpo Completo C</h3>
-                <div class="ejercicio">
-                    <h4>Peso muerto con mancuernas (técnica suave)</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Press de banca con mancuernas</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Remo en máquina</h4>
-                    <p>3 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Extensión de piernas</h4>
-                    <p>2 series x 12 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Fondos de tríceps (asistidos si es necesario)</h4>
-                    <p>2 series x 10 repeticiones</p>
-                </div>
-                <div class="ejercicio">
-                    <h4>Plancha lateral</h4>
-                    <p>2 series x 20 segundos por lado</p>
-                </div>
-                
-                <h3>Recomendaciones para principiantes:</h3>
-                <ul>
-                    <li>Enfócate en aprender la técnica correcta antes de aumentar el peso</li>
-                    <li>Descanso entre series: 60-90 segundos</li>
-                    <li>Haz calentamiento antes de cada sesión (5-10 minutos)</li>
-                    <li>Bebe agua durante el entrenamiento</li>
-                    <li>Progresa gradualmente añadiendo repeticiones antes de añadir peso</li>
-                    <li>Consulta a un entrenador para verificar tu técnica</li>
-                </ul>
-                
-                <button class="btn" onclick="printRoutine('principiantes')">Imprimir Rutina</button>
-                <script>
-                    // Funciones para abrir y cerrar modales
-                    function openModal(modalId) {
-                        document.getElementById(modalId).style.display = 'block';
-                    }
-                
-                    function closeModal(modalId) {
-                        document.getElementById(modalId).style.display = 'none';
-                    }
-                
-                    // Cerrar modal al hacer click fuera del contenido
-                    window.onclick = function(event) {
-                        const modals = document.getElementsByClassName('modal');
-                        for (let modal of modals) {
-                            if (event.target == modal) {
-                                modal.style.display = 'none';
-                            }
-                        }
-                    }
-                
-                    // Función para imprimir (ejemplo básico)
-                    function printRoutine(modalId) {
-                        const printContents = document.getElementById(modalId).innerHTML;
-                        const originalContents = document.body.innerHTML;
-                        document.body.innerHTML = printContents;
-                        window.print();
-                        document.body.innerHTML = originalContents;
-                    }
-                
-                    // Filtrado de rutinas
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const tabs = document.querySelectorAll('.tab');
-                        tabs.forEach(tab => {
-                            tab.addEventListener('click', function() {
-                                const filter = this.dataset.filter;
-                                
-                                // Actualizar tabs activos
-                                tabs.forEach(t => t.classList.remove('active'));
-                                this.classList.add('active');
-                                
-                                // Filtrar rutinas
-                                const rutinas = document.querySelectorAll('.rutina-card');
-                                rutinas.forEach(rutina => {
-                                    const category = rutina.dataset.category;
-                                    if (filter === 'all' || filter === category) {
-                                        rutina.style.display = 'block';
-                                    } else {
-                                        rutina.style.display = 'none';
-                                    }
-                                });
-                            });
-                        });
-                    });
-                    document.addEventListener('DOMContentLoaded', function() {
-                    const tabs = document.querySelectorAll('.tab');
+                <div class="card">
                     
-                    tabs.forEach(tab => {
-                        tab.addEventListener('click', function() {
-                            const filter = this.dataset.filter;
-                            
-                            // Quitar clase active de todos los tabs
-                            tabs.forEach(t => t.classList.remove('active'));
-                            // Añadir clase active al tab clickeado
-                            this.classList.add('active');
-                            
-                            // Filtrar las tarjetas
-                            const rutinas = document.querySelectorAll('.rutina-card');
-                            rutinas.forEach(rutina => {
-                                const category = rutina.dataset.category;
-                                
-                                if (filter === 'all' || filter === category) {
-                                    rutina.style.display = 'block';
-                                } else {
-                                    rutina.style.display = 'none';
-                                }
-                            });
-                        });
-                    });
-                });
-                
-                </script>
-               
+                    
+                    <div class="card-header">
+                        <h3 class="card-title">Vestido Glafira</h3>
+                        <span class="card-category">Traje Tradicional</span>
+                    </div>
+                    <div class="model-container">
+                        <div class="sketchfab-embed-wrapper">
+                            <iframe title="Costume: Glafira, &quot;Wolves and Sheep&quot;" 
+                                    frameborder="0" 
+                                    allowfullscreen 
+                                    mozallowfullscreen="true" 
+                                    webkitallowfullscreen="true" 
+                                    allow="autoplay; fullscreen; xr-spatial-tracking" 
+                                    xr-spatial-tracking 
+                                    execution-while-out-of-viewport 
+                                    execution-while-not-rendered 
+                                    web-share 
+                                    width="100%" 
+                                    height="400" 
+                                    src="https://sketchfab.com/models/ff5dc0e57d5a4574b682bdfe86b8f5e3/embed">
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <p class="card-description">Traje tradicional con detalles únicos y diseño auténtico</p>
+                        <div class="card-tags">
+                            <span class="tag">Tradicional</span>
+                            <span class="tag">Elegante</span>
+                            <span class="tag">Cultural</span>
+                        </div>
+                    </div>
+                </div>
+                                <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Material Textil</h3>
+                    <span class="card-category">Tela Interactiva</span>
+                </div>
+                <div class="model-container">
+                    <div class="sketchfab-embed-wrapper">
+  <iframe title="DFT-DT-00002-GP - Fabric Material"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          width="100%"
+          height="400"
+          src="https://sketchfab.com/models/16728b6182dd41098ed9a6c7f62fd2be/embed">
+  </iframe>
+</div>
+
+                </div>
+                <div class="card-info">
+                    <p class="card-description">Explora la textura y volumen de esta tela en 3D.</p>
+                    <div class="card-tags">
+                    <span class="tag">3D</span>
+                    <span class="tag">Textura</span>
+                    <span class="tag">Material</span>
+                    </div>
+                </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Sección de Modelos -->
+<section id="modelos" class="section">
+    <div class="container">
+        <h2 class="section-title">Biblioteca de Modelos</h2>
+        <div class="models-grid">
+            <a href="vestidos.html" class="model-item model-link">
+                <div class="model-preview">
+                    <span class="model-icon">👗</span>
+                </div>
+                <h4 class="model-title">Vestidos</h4>
+                <p class="model-count">Ver colección</p>
+            </a>
+            <a href="camisetas.html" class="model-item model-link">
+                <div class="model-preview">
+                    <span class="model-icon">👔</span>
+                </div>
+                <h4 class="model-title">Camisetas</h4>
+                <p class="model-count">Ver colección</p>
+            </a>
+            <a href="pantalones.html" class="model-item model-link">
+                <div class="model-preview">
+                    <span class="model-icon">👖</span>
+                </div>
+                <h4 class="model-title">Pantalones</h4>
+                <p class="model-count">Ver colección</p>
+            </a>
+            <a href="chaquetas.html" class="model-item model-link">
+                <div class="model-preview">
+                    <span class="model-icon">🧥</span>
+                </div>
+                <h4 class="model-title">Chaquetas</h4>
+                <p class="model-count">Ver colección</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Catálogo Textil. Innovación en visualización 3D.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
