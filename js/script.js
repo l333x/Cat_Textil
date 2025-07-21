@@ -114,4 +114,58 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.section, .card, .color-card, .model-item').forEach(el => {
     observer.observe(el);
   });
+
+  // ✅ FUNCIONALIDAD DE WHATSAPP FLOTANTE - NUEVA
+  // Configuración de WhatsApp flotante
+  const whatsappFloatConfig = {
+    phoneNumber: '593960145588',
+    message: 'Gracias por contactarnos, nos encargamos de distribuir modelos 3D. ¿En qué estaría interesado? Además, si usted crea modelos también denos la información para poder subir sus archivos para que puedan ser vendidos.'
+  };
+
+  // Función para mostrar notificación específica de WhatsApp
+  const showWhatsAppNotification = (message) => {
+    const notification = document.createElement('div');
+    notification.className = 'whatsapp-notification';
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.animation = 'whatsapp-slide-out 0.5s ease-out forwards';
+      setTimeout(() => {
+        notification.remove();
+      }, 500);
+    }, 3000);
+  };
+
+  // Función para crear efecto visual de click en WhatsApp
+  const createWhatsAppClickEffect = () => {
+    const button = document.querySelector('.whatsapp-float');
+    
+    const effect = document.createElement('div');
+    effect.className = 'whatsapp-click-effect';
+    
+    button.appendChild(effect);
+    
+    setTimeout(() => {
+      effect.remove();
+    }, 600);
+  };
+
+  // Función principal de WhatsApp flotante
+  window.openWhatsAppFloat = function() {
+    const encodedMessage = encodeURIComponent(whatsappFloatConfig.message);
+    const whatsappUrl = `https://wa.me/${whatsappFloatConfig.phoneNumber}?text=${encodedMessage}`;
+    
+    createWhatsAppClickEffect();
+    showWhatsAppNotification('Redirigiendo a WhatsApp...');
+    
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank');
+    }, 300);
+  };
+
+  // Inicializar WhatsApp (opcional, para debug)
+  console.log('✅ WhatsApp flotante inicializado');
+  console.log('✅ Todas las funcionalidades cargadas correctamente');
 });
