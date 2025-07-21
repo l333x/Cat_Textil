@@ -890,8 +890,8 @@ canvas.particles {
     position: fixed;
     bottom: 25px;
     left: 25px;
-    width: 250px;
-    height: 250px;
+    width: 80px;
+    height: 80px;
     background: #25d366;
     border-radius: 50%;
     display: flex;
@@ -1031,15 +1031,15 @@ canvas.particles {
 /* Responsive */
 @media (max-width: 768px) {
     .whatsapp-float {
-        width: 55px;
-        height: 55px;
+        width: 85px;
+        height: 85px;
         bottom: 20px;
         left: 20px;
     }
     
     .whatsapp-icon svg {
-        width: 32px;
-        height: 32px;
+        width: 45px;
+        height: 45px;
     }
     
     .whatsapp-notification {
@@ -1052,14 +1052,14 @@ canvas.particles {
 
 @media (max-width: 480px) {
     .whatsapp-float {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         bottom: 15px;
         left: 15px;
     }
     
     .whatsapp-icon svg {
-        width: 32px;
-        height: 32px;
+        width: 45px;
+        height: 45px;
     }
 }
