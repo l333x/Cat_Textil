@@ -890,8 +890,8 @@ canvas.particles {
     position: fixed;
     bottom: 25px;
     left: 25px;
-    width: 60px;
-    height: 60px;
+    width: 250px;
+    height: 250px;
     background: #25d366;
     border-radius: 50%;
     display: flex;
@@ -1038,8 +1038,8 @@ canvas.particles {
     }
     
     .whatsapp-icon svg {
-        width: 26px;
-        height: 26px;
+        width: 32px;
+        height: 32px;
     }
     
     .whatsapp-notification {
@@ -1059,7 +1059,7 @@ canvas.particles {
     }
     
     .whatsapp-icon svg {
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
     }
 }
